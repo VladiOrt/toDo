@@ -1,15 +1,21 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule , ConfigService } from '@nestjs/config';
 import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/toDo'),
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync({
+      imports : [ ConfigModule ],
+      inject : [ ConfigService ],
+      useFactory: ( ConfigService : ConfigService ) => ({
+        type: 'mongodb',
+        url: ConfigService.get<string>('MONGODB_URI'),
+        useUnifiedTopology: true,
+      })
+    }),
     TasksModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+  ]
 })
 export class AppModule {}
