@@ -14,7 +14,7 @@ export class TasksController {
             return {
                 ok: true,
                 msg: 'Tarea creada con exíto',
-                data: 'data'
+                data: resultTask
             }
         }catch(error){
             return { 
