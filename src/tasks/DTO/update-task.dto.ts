@@ -2,7 +2,7 @@
 import { IsString, IsOptional, IsDateString, IsEnum } from 'class-validator';
 import { TodoStatus } from './create-task.dto';
 
-export class UpdateTodoDto {
+export class UpdateTaskDto {
   @IsString()
   @IsOptional()
   title?: string;

@@ -6,7 +6,7 @@ export enum TodoStatus {
   COMPLETED = 'COMPLETADO',
 }
 
-export class CreateTodoDto {
+export class CreateTaskDto {
   @IsString()
   title: string;
 
