@@ -12,7 +12,7 @@ export class Task {
     description: string;
 
     @Prop({ required: true })
-    dueDate: Date;
+    deadLine: Date;
 
     @Prop({ enum: ['Pendiente', 'En progreso' , 'Completado' ], default:'Pendiente' })
     status: string;
