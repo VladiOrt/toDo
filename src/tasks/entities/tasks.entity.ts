@@ -14,6 +14,6 @@ export class Task {
   @Column()
   deadLine: Date;
 
-  @Column({ default: 'Pendiente' })
-  status: 'Pendiente' | 'En progreso' | 'Completado';
+  @Column({ default: 'PENDIENTE' })
+  status: 'PENDIENTE' | 'EN PROGRESO' | 'COMPLETADO';
 }

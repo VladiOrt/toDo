@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsDateString, IsEnum } from 'class-validator';
+import { IsString, IsOptional, IsDateString, IsEnum, IsNotEmpty } from 'class-validator';
 
 export enum statusTask {
   PENDING = 'PENDIENTE',
@@ -8,6 +8,7 @@ export enum statusTask {
 
 export class CreateTaskDto {
   @IsString()
+  @IsNotEmpty()
   title: string;
 
   @IsString()
@@ -19,6 +20,9 @@ export class CreateTaskDto {
   deadLine?: string;
 
   @IsEnum(statusTask)
+  @IsNotEmpty()
+  status: statusTask;
+
   @IsOptional()
-  status?: statusTask;
+  userId?: string;
 }

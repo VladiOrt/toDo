@@ -15,12 +15,12 @@ export class TasksService {
         return newTask.save();
     } 
 
-    async findAll(): Promise<Task[]>{
-        return this.taskModel.find().exec();
+    async findAllByUser(userId): Promise<Task[]>{
+        return this.taskModel.find({ userId }).lean().exec();
     }
         
-    async findOne(id: string): Promise<Task>{
-        const task = await this.taskModel.findById(id).exec();
+    async findOneByUser(id: string, userId: string): Promise<Task>{
+        const task = await this.taskModel.findOne({_id: id, userId }).exec();
 
         if(!task){
             throw new NotFoundException(`Tarea con ID "${id}" no encontrado`);            
@@ -37,8 +37,8 @@ export class TasksService {
         return updateTask;
     }
 
-    async delete(id: string): Promise<void> {
-        const result = await this.taskModel.findByIdAndDelete(id).exec();
+    async delete(id: string, userId: string): Promise<void> {
+        const result = await this.taskModel.findByIdAndDelete({_id: id , userId}).exec();
         if(!result){
             throw new NotFoundException(`Tarea con ID "${id}" no encontrado`)
         }
