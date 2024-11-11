@@ -1,6 +1,6 @@
 import { IsString, IsOptional, IsDateString, IsEnum } from 'class-validator';
 
-export enum TodoStatus {
+export enum statusTask {
   PENDING = 'PENDIENTE',
   IN_PROGRESS = 'EN PROGRESO',
   COMPLETED = 'COMPLETADO',
@@ -18,7 +18,7 @@ export class CreateTaskDto {
   @IsOptional()
   deadLine?: string;
 
-  @IsEnum(TodoStatus)
+  @IsEnum(statusTask)
   @IsOptional()
-  status?: TodoStatus;
+  status?: statusTask;
 }

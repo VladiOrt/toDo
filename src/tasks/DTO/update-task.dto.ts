@@ -1,6 +1,6 @@
 // todo/dto/update-todo.dto.ts
 import { IsString, IsOptional, IsDateString, IsEnum } from 'class-validator';
-import { TodoStatus } from './create-task.dto';
+import { statusTask } from './create-task.dto';
 
 export class UpdateTaskDto {
   @IsString()
@@ -15,7 +15,7 @@ export class UpdateTaskDto {
   @IsOptional()
   deadLine?: string;
 
-  @IsEnum(TodoStatus)
+  @IsEnum(statusTask)
   @IsOptional()
-  status?: TodoStatus;
+  status?: statusTask;
 }
