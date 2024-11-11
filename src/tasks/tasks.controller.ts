@@ -27,21 +27,25 @@ export class TasksController {
         };
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('/')
     async findTasks() {
         return this.taskService.findAll();
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get(':id')
     findOne(@Param('id') id: string){
         return this.taskService.findOne(id);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Put(':id')
     update(@Param('id') id:string, @Body() updateTaskDto: UpdateTaskDto) {
         return this.taskService.update(id, updateTaskDto);
     }
-
+    
+    @UseGuards(JwtAuthGuard)
     @Delete(':id')
     remove(@Param('id') id: string) {
         return this.taskService.delete(id);
