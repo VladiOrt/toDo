@@ -16,12 +16,13 @@ export class UsersService {
         return newUser.save();
     }
 
-    async findUserByUsername(username: string): Promise<User | null> {
-        return this.userModel.findOne({ username }).exec();        
+    async findUserByUsername(email: string): Promise<User | null> {
+        return this.userModel.findOne({ email }).exec();        
     }
 
-    async validateUser(username: string, password: string): Promise<User | null>{
-        const user = await this.findUserByUsername(username);
+    async validateUser(createUserDto: CreateUserDto): Promise<User | null>{
+        const { email, password } = createUserDto
+        const user = await this.findUserByUsername(email);
         if(user && (await bcrypt.compare(password, user.password))){
             return user;
         }
