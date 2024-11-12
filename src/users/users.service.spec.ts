@@ -45,7 +45,6 @@ describe('UsersService', () => {
 
   describe('createUser', () => {
     beforeEach(() => {
-      // Asegúrate de que bcrypt.hash esté configurado como un mock
       (bcrypt.hash as jest.Mock).mockResolvedValue('hashedPassword123');
     });
   
